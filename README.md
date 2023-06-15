@@ -24,13 +24,13 @@ Something like:
   | This would be a comment |
 ```
 
-Brackets for type decleration
-Python line breaking for functions and loops
-Types are written with letters instead of full names
-six hashtag to represent classes
-triple hashtag to represent a functions space
-double hashtage for loop/if/other statement space
-Comments delcared with opening and closing ||'s
+Brackets for type decleration  
+Python line breaking for functions and loops  
+Types are written with letters instead of full names  
+six hashtag to represent classes  
+triple hashtag to represent a functions space  
+double hashtage for loop/if/other statement space  
+Comments delcared with opening and closing ||'s  
 
 
 **Project details and goals will grow as I figure out what is feasible and interesting to implement**  
