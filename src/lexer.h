@@ -76,15 +76,20 @@ public:
 
 class Lexor {
 private:
-    std::string source;
+    std::ifstream inputStream;
+    std::vector<std::string> fileNames;
+    int marker;
     Errors errorList;
+    Tokens tokenList;
 
 public:
-    Lexor(std::string conSource, Errors conError){
-        source = conSource;
-        errorList = conError;
-    };
-
+    Lexor(Tokens conToken, Errors conError);
+    void AddFile(const std::string& filePath);
+    bool OpenNextFile();
+    bool HasNextFile();
+    void RestorePoint(int position);
+    bool GetLine(std::string* line);
+    int GetLineNo();
 
 };
 
