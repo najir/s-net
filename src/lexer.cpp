@@ -1,24 +1,34 @@
 #include "lexer.h"
 #include <iostream>
+#include <fstream>
+#include <vector>
 
-    Lexor(Tokens conToken, Errors conError){
-
-    };
-    void AddFile(const std::string& filePath){
-
-    };
-    bool OpenNextFile(){
+    Token::Token(){
 
     };
-    bool HasNextFile(){
+
+    std::string Token::TypeToString(Type Token){
 
     };
-    void RestorePoint(int position){
+
+    Lexor::Lexor(std::string source, Token::Type conToken, Errors conError){
 
     };
-    bool GetLine(std::string* line){
+    void Lexor::AddFile(std::string filePath){
 
     };
-    int GetLineNo(){
-        
+    bool Lexor::OpenNextFile(){
+
+    };
+    bool Lexor::HasNextFile(){
+
+    };
+    void Lexor::RestorePoint(int position){
+
+    };
+    bool Lexor::GetLine(std::string* line){
+
+    };
+    int Lexor::GetLineNo(){
+
     };

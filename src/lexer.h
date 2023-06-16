@@ -4,8 +4,9 @@
 #include <fstream>
 #include <vector>
 
-struct Tokens{ //Expect to be moved to it's own header file
-    enum class Type{
+class Token{ //Expect to be moved to it's own header file
+public:
+    enum Type{
         eof         = 1,
         eol         = 2,
         indentation = 3,
@@ -30,6 +31,10 @@ struct Tokens{ //Expect to be moved to it's own header file
         _scope      = 22
 
     };
+
+    Token();
+
+    std::string TypeToString(Type token);
 };
 
 struct Errors{ //Also expect to be moved to it's own header file
@@ -78,13 +83,14 @@ class Lexor {
 private:
     std::ifstream inputStream;
     std::vector<std::string> fileNames;
-    int marker;
+    int lineMarker;
+    int charMarker;
     Errors errorList;
-    Tokens tokenList;
+    Token::Type tokenList;
 
 public:
-    Lexor(Tokens conToken, Errors conError);
-    void AddFile(const std::string& filePath);
+    Lexor(std::string source, Token::Type conToken, Errors conError);
+    void AddFile(std::string filePath);
     bool OpenNextFile();
     bool HasNextFile();
     void RestorePoint(int position);
