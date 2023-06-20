@@ -4,8 +4,9 @@
 #include <fstream>
 #include <vector>
 
-class Token{ //Expect to be moved to it's own header file
+class Tokenizer{
 public:
+    //List of total characters to tokenize
     enum Type{
         eof         = 1,
         eol         = 2,
@@ -32,50 +33,31 @@ public:
 
     };
 
-    Token();
+    //Token location data for Error handling
+    struct Location{
+        const char* file_path;
+        size_t row;
+        size_t col;
+    };
+    //Actual character being represented as a token
+    struct Token{
+        Type typeKind;
+        Location loc;
+        const char* text;
+        size_t len;
+    };
 
+    //Build token(Expect parameters to be changed :o )
+    Tokenizer(int funcType, char* funcLine, int funcPos);
+
+    //Returns a string of current token type
     std::string TypeToString(Type token);
+
+    //Provides string description of token type
+    std::string GetDescription();
 };
 
-struct Errors{ //Also expect to be moved to it's own header file
-
-};
-
-class InputSource{
-protected:
-    int marker = 0;
-
-public:
-    virtual std::string GetFileName()         = 0;
-    virtual bool HasNextFile()                = 0;
-    virtual bool DoGetLine(std::string* line) = 0;
-    virtual bool OpenNextFile()               = 0;
-    void RestorePoint(int position);
-    bool GetLine(std::string* line);
-    int GetLineNo();
-};
-
-class StandardInputSource : InputSource {
-private:
-
-public:
-
-};
-
-class FileInputSource : public InputSource {
-private:
-    std::ifstream inputStream;
-    std::vector<std::string> fileNames;
-
-public:
-    FileInputSource(){};
-    ~FileInputSource();
-    void AddFile(const std::string& filePath);
-    bool OpenNextFile() override;
-    bool HasNextFile() override;
-
-
-
+struct Errors{ //May be moved to it's own file??
 
 };
 
@@ -86,10 +68,10 @@ private:
     int lineMarker;
     int charMarker;
     Errors errorList;
-    Token::Type tokenList;
+    Tokenizer::Type tokenList;
 
 public:
-    Lexor(std::string source, Token::Type conToken, Errors conError);
+    Lexor(std::string source, Tokenizer::Type conToken, Errors conError);
     void AddFile(std::string filePath);
     bool OpenNextFile();
     bool HasNextFile();
@@ -98,9 +80,5 @@ public:
     int GetLineNo();
 
 };
-
-
-
-
 
 #endif

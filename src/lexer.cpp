@@ -3,15 +3,19 @@
 #include <fstream>
 #include <vector>
 
-    Token::Token(){
+    Tokenizer::Tokenizer(int funcType, char* funcLine, int funcPos){
 
     };
 
-    std::string Token::TypeToString(Type Token){
+    std::string Tokenizer::GetDescription(){
+
+    }
+
+    std::string Tokenizer::TypeToString(Type Token){
 
     };
 
-    Lexor::Lexor(std::string source, Token::Type conToken, Errors conError){
+    Lexor::Lexor(std::string source, Tokenizer::Type conToken, Errors conError){
 
     };
     void Lexor::AddFile(std::string filePath){
